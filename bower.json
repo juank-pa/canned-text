@@ -1,0 +1,37 @@
+{
+  "name": "jquery-canned-text",
+  "description": "A jQuery plugin to fit text inside fixed sized boxes",
+  "main": [
+    "jquery.canned-text.js",
+    "jquery.canned-text.css"
+  ],
+  "dependencies": {
+    "jquery": ">= 1.6"
+  },
+  "keywords": [
+    "full-page",
+    "layout",
+    "text",
+    "responsive",
+    "javascript",
+    "browser"
+  ],
+  "ignore": [
+    "sample.html",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "authors": [
+    "Juan Carlos Pazmino <juankpro@outlook.com> (juankpro.com)"
+  ],
+  "license": [
+    "MIT"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:juank-pa/canned-text.git"
+  },
+  "homepage": "https://gitlab.com/juank-pa/canned-text"
+}

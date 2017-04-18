@@ -1,0 +1,66 @@
+.canned-text {
+  font-size: 1em;
+}
+
+.canned-text h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.canned-text h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+
+.canned-text h3 {
+  font-size: 1.17em;
+  margin: 1em 0;
+}
+
+.canned-text h4 {
+  font-size: 1em;
+  margin: 1.33em 0;
+}
+
+.canned-text h5 {
+  font-size: 0.83em;
+  margin: 1.67em 0;
+}
+
+.canned-text h6 {
+  font-size: 0.75em;
+  margin: 2.33em 0;
+}
+
+.canned-text p,
+.canned-text ul,
+.canned-text menu,
+.canned-text dir,
+.canned-text ol,
+.canned-text dl {
+  margin: 1em 0;
+}
+
+.canned-text pre,
+.canned-text code,
+.canned-text kbd,
+.canned-text samp {
+  font-size: 1em;
+}
+
+.canned-text small {
+  font-size: 80%;
+}
+
+.canned-text sub,
+.canned-text sup {
+  font-size: 75%;
+}
+
+.canned-text sub {
+  bottom: -0.25em;
+}
+
+.canned-text sup {
+  top: -0.5em;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>canned-text</title>
+    <link rel="stylesheet" type="text/css" href="jquery.canned-text.css">
+
+    <style type="text/css">
+      body {
+        background: #2c5763;
+        color: #fff;
+        font: 16px/1.8 sans-serif;
+        margin: 0;
+        margin-top: 1vh;
+      }
+      .container {
+        width: 84%;
+        height: 80vh;
+        margin: 0 auto;
+        padding: 1vh 2%;
+        background: #54879a;
+      }
+      .container h1 {
+        background: rgba(0,0,0,0.2);
+        text-align: center;
+        color: #fff;
+        text-transform: uppercase;
+        text-shadow: #2c5763 -3px 3px 0;
+        margin-top: 0px;
+      }
+      .nowrap-container {
+        text-align: center;
+        height: 12vh;
+        background: #9a9974;
+      }
+    </style>
+
+    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>This is my canned text!</h1>
+      </header>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+    </div>
+
+    <div class="nowrap-container">
+      This is my <em>nowrap</em> canned text!
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="jquery.canned-text.js"></script>
+    <script type="text/javascript">
+      $(".container").canText();
+      $(".nowrap-container").canText({ nowrap: true });
+    </script>
+
+  </body>
+</html>
