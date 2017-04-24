@@ -1,15 +1,5 @@
 image: node:latest
   
-before_script:
-  #- mkdir ~/tmp
-  #- pushd ~/tmp
-  #- wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
-  #- tar xf phantomjs-1.9.7-linux-x86_64.tar.bz2
-  #- mv phantomjs-1.9.7-linux-x86_64 phantomjs
-  #- ln -s ~/tmp/phantomjs/bin/phantomjs /usr/bin/phantomjs
-  #- phantomjs --version
-  #- popd
-
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
