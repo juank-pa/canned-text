@@ -12,7 +12,7 @@ describe('api', function() {
   });
 
   afterEach(function() {
-    //target.remove();
+    target.remove();
   });
 
   describe('canText', function() {
