@@ -9,8 +9,10 @@
   var VERTICAL = 2;
 
   var init = function($el, options) {
-    var nowrap = (options.nowrap? 'white-space: nowrap; display: inline-block' : '');
-    $el.html('<div class="canned-text" style="' + nowrap + '">' + $el.html() + '</div>');
+    var needsFix = parseInt($el.css('padding-top'), 0) > 0 || $el.css('display') === 'inline-block';
+    var marginFix = needsFix? 'width: 100%;display: inline-block;' : '';
+    var style = (options.nowrap? 'white-space: nowrap;display: inline-block;' : marginFix);
+    $el.html('<div class="canned-text" style="' + style + '">' + $el.html() + '</div>');
   };
 
   var fontSizeOfEl = function($el) {
@@ -43,15 +45,18 @@
     });
   };
 
-  var getterForDirection = function(direction, inner) {
-    if (inner) return direction == HORIZONTAL? innerWidthOfEl : innerHeightOfEl;
+  var sizeGetterForDirection = function(direction) {
     return direction == HORIZONTAL? widthOfEl : heightOfEl;
+  };
+
+  var innerSizeGetterForDirection = function(direction) {
+    return direction == HORIZONTAL? innerWidthOfEl : innerHeightOfEl;
   };
 
   var canDirection = function($container, $content, options) {
     if (!options.nowrap) return VERTICAL;
-    var containerRatio = innerWidthOfEl($container) / innerHeightOfEl($container);
-    var contentRatio = widthOfEl($content) / heightOfEl($content);
+    var containerRatio = widthOfEl($container) / heightOfEl($container);
+    var contentRatio = innerWidthOfEl($content) / innerHeightOfEl($content);
     return contentRatio > containerRatio? HORIZONTAL : VERTICAL;
   };
 
@@ -90,9 +95,12 @@
 
       var fontSize = fontSizeOfEl($container);
       var direction = canDirection($container, $content, this.options);
-      var sizeGetter = getterForDirection(direction);
-      var containerSize = sizeGetter($container);
-      var contentSizeChangeTracker = getChangeTracker($content, sizeGetter);
+
+      var innerSizeOf = innerSizeGetterForDirection(direction);
+      var sizeOf = sizeGetterForDirection(direction);
+
+      var containerSize = sizeOf($container);
+      var contentSizeChangeTracker = getChangeTracker($content, innerSizeOf);
 
       fontSize = linearCan($container, containerSize, contentSizeChangeTracker, fontSize, 1, greaterThan);
       contentSizeChangeTracker.reset();
@@ -159,9 +167,12 @@
     var binaryCan = function($container, $content, options) {
       var fontSize = fontSizeOfEl($container);
       var direction = canDirection($container, $content, options);
-      var sizeGetter = getterForDirection(direction);
-      var containerSize = sizeGetter($container);
-      var contentSizeChangeTracker = getChangeTracker($content, sizeGetter);
+
+      var innerSizeOf = innerSizeGetterForDirection(direction);
+      var sizeOf = sizeGetterForDirection(direction);
+
+      var containerSize = sizeOf($container);
+      var contentSizeChangeTracker = getChangeTracker($content, innerSizeOf);
 
       while (smallerThanContainer(containerSize, contentSizeChangeTracker)) {
         fontSize *= 2;

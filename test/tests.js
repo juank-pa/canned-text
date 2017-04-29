@@ -8,7 +8,7 @@ describe('api', function() {
   });
 
   beforeEach(function() {
-    target = $('<div id="target"></div>').appendTo(wrapper);
+    target = $('<div id="target" style="position:relative;"></div>').appendTo(wrapper);
   });
 
   afterEach(function() {
@@ -16,27 +16,47 @@ describe('api', function() {
   });
 
   describe('canText', function() {
-    it('encloses the target element "the container" content within a div.canned-text "the content"', function() {
-      expect(target.find('div.canned-text')).to.not.exist;
-      target.canText();
-      expect(target.find('div.canned-text')).to.exist;
-    });
+    context('initialization', function() {
+      context('with nowrap option set to false', function() {
+        it('encloses the target element "the container" content within a div.canned-text "the content"', function() {
+          expect(target.find('div.canned-text')).to.not.exist;
+          target.canText();
+          expect(target.find('div.canned-text')).to.exist;
+        });
 
-    context('with nowrap option set to true', function() {
-      it('encloses the target element "the container" content within a div.canned-text "the content"', function() {
-        expect(target.find('div.canned-text')).to.not.exist;
-        target.canText({ nowrap: true });
-        expect(target.find('div.canned-text')).to.exist;
+        context('when container does *not* have a top padding', function() {
+          it('content is a block', function() {
+            target.canText();
+            expect(target.find('.canned-text')).to.have.css('display', 'block');
+          });
+        });
+
+        context('when container element has a top padding', function() {
+          it('content is an 100% width inline-block', function() {
+            target.css('padding-top', '2px');
+            target.canText();
+            expect(target.find('.canned-text')).to.have.css('display', 'inline-block');
+            expect(target.find('.canned-text').attr('style')).to.match(/width: 100%;/);
+          });
+        });
       });
 
-      it('prevents the content from wrapping', function() {
-        target.canText({ nowrap: true });
-        expect(target.find('.canned-text')).to.have.css('white-space', 'nowrap');
-      });
+      context('with nowrap option set to true', function() {
+        it('encloses the target element "the container" content within a div.canned-text "the content"', function() {
+          expect(target.find('div.canned-text')).to.not.exist;
+          target.canText({ nowrap: true });
+          expect(target.find('div.canned-text')).to.exist;
+        });
 
-      it('enclosing element is an inline-block', function() {
-        target.canText({ nowrap: true });
-        expect(target.find('.canned-text')).to.have.css('display', 'inline-block');
+        it('prevents the content from wrapping', function() {
+          target.canText({ nowrap: true });
+          expect(target.find('.canned-text')).to.have.css('white-space', 'nowrap');
+        });
+
+        it('content is an inline-block', function() {
+          target.canText({ nowrap: true });
+          expect(target.find('.canned-text')).to.have.css('display', 'inline-block');
+        });
       });
     });
 
@@ -111,6 +131,22 @@ describe('api', function() {
                 it('the height of the content is always less than the size of the container', function() {
                   canFn();
                   expect(targetContentHeight()).to.be.at.most(target.height());
+                });
+              });
+
+              context('when container has top padding and content has top margin in the first element', function() {
+                beforeEach(function() {
+                  sampleLoader('content-with-top-element-with-margin', content);
+                });
+
+                it('still fits the text inside the container without bleeding', function() {
+                  canFn();
+
+                  var contentTop = parseInt(target.find('.canned-text').position().top);
+                  var containerPaddingTop = parseInt(target.css('padding-top'));
+                  var topOffset = contentTop - containerPaddingTop;
+
+                  expect(topOffset + targetContentHeight()).to.be.at.most(target.height());
                 });
               });
             });
@@ -189,11 +225,11 @@ describe('api', function() {
   }
 
   function targetContentWidth() {
-    return target.find('.canned-text').width();
+    return target.find('.canned-text').innerWidth();
   }
 
   function targetContentHeight() {
-    return target.find('.canned-text').height();
+    return target.find('.canned-text').innerHeight();
   }
 
   function targetFontSize() {
