@@ -52,8 +52,6 @@ bower install jquery-canned-text
 - Containers with only non-text content (e.g. img) will not be canned.
 - This plugin uses a brute force algorithm to try to fit the text into the container. If the
   content doesn´t seem to be resizing then the canning will be cancelled.
-- Having a `margin-top` in the top most element can make the canning process to perform
-  incorrectly. Please try to position the top most element using paddings instead.
 - If your application has lots of non-relative styles that affect this plugin you can include
   the canned text CSS which contains defaults for the most common HTML elements inside
   canned containers.
@@ -62,7 +60,7 @@ bower install jquery-canned-text
 <link rel="stylesheet" type="text/css" href="jquery.canned-text.css">
     ```
   You can then override any style you want by creating a selector for your elements inside the
-  `.canned-text` selector.
+  `.canned-text` selector. e.g.
 
     ```html
 <style>
@@ -71,9 +69,8 @@ bower install jquery-canned-text
 }
 </style>
     ```
-- Nowrap canned content can still have wrapping content (via custom CSS) but
-  the container will still try to can any remaining non-wrapping content.
-- Nowrap canned content can control wrapping by manually adding `<br>` elements.
+- Nowrap canned content can still wrap (via custom CSS) but the container will still
+  try to can any remaining non-wrapping content. You can also use `<br>` elements.
 
 ## Running tests
 If you want to run tests simply open `test/index.html` in a browser.
