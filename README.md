@@ -59,6 +59,7 @@ bower install jquery-canned-text
     ```html
 <link rel="stylesheet" type="text/css" href="jquery.canned-text.css">
     ```
+
   You can then override any style you want by creating a selector for your elements inside the
   `.canned-text` selector. e.g.
 
@@ -69,6 +70,7 @@ bower install jquery-canned-text
 }
 </style>
     ```
+
 - Nowrap canned content can still wrap (via custom CSS) but the container will still
   try to can any remaining non-wrapping content. You can also use `<br>` elements.
 
