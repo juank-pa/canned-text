@@ -56,20 +56,20 @@ bower install jquery-canned-text
   the canned text CSS which contains defaults for the most common HTML elements inside
   canned containers.
 
-    ```html
+```html
 <link rel="stylesheet" type="text/css" href="jquery.canned-text.css">
-    ```
+```
 
   You can then override any style you want by creating a selector for your elements inside the
   `.canned-text` selector. e.g.
 
-    ```html
+```html
 <style>
 .canned-text h1 {
   /* ... */
 }
 </style>
-    ```
+```
 
 - Nowrap canned content can still wrap (via custom CSS) but the container will still
   try to can any remaining non-wrapping content. You can also use `<br>` elements.
